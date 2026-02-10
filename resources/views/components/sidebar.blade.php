@@ -24,9 +24,115 @@
           </li>
 
           @if (auth()->user()->role->role =='user' || auth()->user()->role->role =='admin')
-            
+              <li class="nav-item nav-item-has-children">
+                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#tickets_menu"
+                  aria-controls="tickets_menu" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="icon">
+                    
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M11.8097 1.66667..."></path>
+                    </svg>
+                  </span>
+                  <span class="text">Tickets</span>
+                </a>
+
+                <ul id="tickets_menu" class="collapse dropdown-nav">
+                  <li>
+                    <a href="#">Create</a>
+                  </li>
+                  <li>
+                    <a href="#">View Tickets</a>
+                  </li>
+                </ul>
+              </li>
+
           @endif
-          <li class="nav-item nav-item-has-children">
+
+          @if (auth()->user()->role->role =='agent')
+
+            <li class="nav-item">
+              <a href="#">
+                <span class="icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M11.8097 1.66667..."></path>
+                  </svg>
+                </span>
+                <span class="text">View Tickets</span>
+              </a>
+            </li>
+          @endif
+
+          @if (auth()->user()->role->role =='admin')
+
+            <li class="nav-item nav-item-has-children">
+              <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#users_menu"
+                aria-controls="users_menu" aria-expanded="false">
+                <span class="icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 10C5 8.34315 6.34315 7 8 7H12C13.6569 7 15 8.34315 15 10V13H5V10Z"></path>
+                  </svg>
+                </span>
+                <span class="text">Users</span>
+              </a>
+
+              <ul id="users_menu" class="collapse dropdown-nav">
+                <li>
+                  <a href="#">Create</a>
+                </li>
+                <li>
+                  <a href="#">View Users</a>
+                </li>
+              </ul>
+            </li>
+          @endif
+
+          @if (auth()->user()->role->role =='admin')
+
+            <li class="nav-item nav-item-has-children">
+              <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#agents_menu"
+                aria-controls="agents_menu" aria-expanded="false">
+                <span class="icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2C12.7614 2 15 4.23858 15 7C15 9.76142 12.7614 12 10 12C7.23858 12 5 9.76142 5 7C5 4.23858 7.23858 2 10 2Z"></path>
+                  </svg>
+                </span>
+                <span class="text">Agents</span>
+              </a>
+
+              <ul id="agents_menu" class="collapse dropdown-nav">
+                <li>
+                  <a href="#">Create</a>
+                </li>
+                <li>
+                  <a href="#">View Agents</a>
+                </li>
+              </ul>
+            </li>
+          @endif
+
+          @if (auth()->user()->role->role =='admin')
+
+            <li class="nav-item">
+              <a href="#">
+                <span class="icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M8 2H12V4H8V2Z"></path>
+                  </svg>
+                </span>
+                <span class="text">Settings</span>
+              </a>
+            </li>
+          @endif
+
+
+
+
+
+
+
+
+          
+          {{-- <li class="nav-item nav-item-has-children">
             <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,18 +140,22 @@
                   <path d="M13.125 2.29167L16.0417 5.20834H14.1667C13.5913 5.20834 13.125 4.74197 13.125 4.16667V2.29167Z"></path>
                 </svg>
               </span>
-              <span class="text">Pages</span>
+              <span class="text">tickets</span>
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> Settings </a>
+                <a href="settings.html"> create</a>
               </li>
               <li>
-                <a href="blank-page.html"> Blank Page </a>
+                <a href="blank-page.html"> view tickets </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+
+
+
+          
+          {{-- <li class="nav-item">
             <a href="invoice.html">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,9 +261,9 @@
               <span class="text">Tables</span>
             </a>
           </li>
-          <span class="divider"><hr></span>
+          <span class="divider"><hr></span> --}}
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="notification.html">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -168,8 +278,8 @@
           </li>
         </ul>
       </nav>
-      <div class="promo-box">
-        <div class="promo-icon">
+      <div class="promo-box"> --}}
+        {{-- <div class="promo-icon">
           <img class="mx-auto" src="./assets/images/logo/logo-icon-big.svg" alt="Logo">
         </div>
         <h3>Upgrade to PRO</h3>
@@ -177,5 +287,5 @@
         <a href="https://plainadmin.com/pro" target="_blank" rel="nofollow" class="main-btn primary-btn btn-hover">
           Upgrade to PRO
         </a>
-      </div>
-    </aside>
+      </div> --}}
+    </aside> 
