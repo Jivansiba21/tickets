@@ -23,9 +23,9 @@
             </ul>
           </li>
 
-          @if (auth()->user()->role->role =='user' || auth()->user()->role->role =='admin')
+          {{-- @if (auth()->user()->role->role =='agent' || auth()->user()->role->role =='admin')
             
-          @endif
+          @endif  --}}
           <li class="nav-item nav-item-has-children">
             <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon">
@@ -34,18 +34,26 @@
                   <path d="M13.125 2.29167L16.0417 5.20834H14.1667C13.5913 5.20834 13.125 4.74197 13.125 4.16667V2.29167Z"></path>
                 </svg>
               </span>
-              <span class="text">Pages</span>
+              <span class="text">Tickets</span>
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> Settings </a>
+                <a href="settings.html"> Create tickets </a>
               </li>
               <li>
-                <a href="blank-page.html"> Blank Page </a>
+                <a href="blank-page.html"> View tickets </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+
+
+
+
+
+
+
+            
+          {{-- <li class="nav-item">
             <a href="invoice.html">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,8 +92,8 @@
                   <path d="M10.8333 5.41669C10.8333 3.34562 12.5123 1.66669 14.5833 1.66669C16.6544 1.66669 18.3333 3.34562 18.3333 5.41669C18.3333 7.48775 16.6544 9.16669 14.5833 9.16669C12.5123 9.16669 10.8333 7.48775 10.8333 5.41669Z"></path>
                   <path d="M10.8333 14.5834C10.8333 12.5123 12.5123 10.8334 14.5833 10.8334C16.6544 10.8334 18.3333 12.5123 18.3333 14.5834C18.3333 16.6545 16.6544 18.3334 14.5833 18.3334C12.5123 18.3334 10.8333 16.6545 10.8333 14.5834Z"></path>
                 </svg>
-              </span>
-              <span class="text">UI Elements </span>
+              </span> --}}
+              {{-- <span class="text">UI Elements </span>
             </a>
             <ul id="ddmenu_4" class="collapse dropdown-nav">
               <li>
@@ -123,8 +131,8 @@
                 <a href="mdi-icons.html"> MDI Icons </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item nav-item-has-children">
+          </li> --}}
+          {{-- <li class="nav-item nav-item-has-children">
             <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_5" aria-controls="ddmenu_5" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,8 +155,8 @@
                   <path d="M1.875 13.75C1.875 13.4048 2.15483 13.125 2.5 13.125H17.5C17.8452 13.125 18.125 13.4048 18.125 13.75C18.125 14.0952 17.8452 14.375 17.5 14.375H2.5C2.15483 14.375 1.875 14.0952 1.875 13.75Z"></path>
                   <path d="M2.5 16.875C2.15483 16.875 1.875 17.1548 1.875 17.5C1.875 17.8452 2.15483 18.125 2.5 18.125H17.5C17.8452 18.125 18.125 17.8452 18.125 17.5C18.125 17.1548 17.8452 16.875 17.5 16.875H2.5Z"></path>
                 </svg>
-              </span>
-              <span class="text">Tables</span>
+              </span> --}}
+              {{-- <span class="text">Tables</span>
             </a>
           </li>
           <span class="divider"><hr></span>
@@ -167,8 +175,8 @@
             </a>
           </li>
         </ul>
-      </nav>
-      <div class="promo-box">
+      </nav> --}}
+      {{-- <div class="promo-box">
         <div class="promo-icon">
           <img class="mx-auto" src="./assets/images/logo/logo-icon-big.svg" alt="Logo">
         </div>
@@ -177,5 +185,11 @@
         <a href="https://plainadmin.com/pro" target="_blank" rel="nofollow" class="main-btn primary-btn btn-hover">
           Upgrade to PRO
         </a>
-      </div>
+      </div> --}}
+
+      <form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
+
     </aside>
