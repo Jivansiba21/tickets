@@ -26,7 +26,7 @@ class LoginController extends Controller
         'password' => $request->password
     ])) {
         $request->session()->regenerate();
-        return redirect('/')->with('message', 'Login Successfully');
+        return redirect('/page')->with('message', 'Login Successfully');
     }
 
     return redirect('/login')->with('error', 'Invalid Credentials');

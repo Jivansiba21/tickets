@@ -22,6 +22,10 @@
               </li>
             </ul>
           </li>
+
+          @if (auth()->user()->role->role =='user' || auth()->user()->role->role =='admin')
+            
+          @endif
           <li class="nav-item nav-item-has-children">
             <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon">
