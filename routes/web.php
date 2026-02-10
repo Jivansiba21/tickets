@@ -12,7 +12,7 @@ Route::get('/github-test', function () {
     return view('welcome');
 });
 
-Route::get('/github-test-1', function () {
+Route::get('/github-test-1-2', function () {
     return view('welcome');
 });
 Route::get('/login',[AuthController::class,'showLogin'])->name('login');
