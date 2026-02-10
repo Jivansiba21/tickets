@@ -11,6 +11,10 @@ Route::get('/page', function () {
 Route::get('/github-test', function () {
     return view('welcome');
 });
+
+Route::get('/github-test-1', function () {
+    return view('welcome');
+});
 Route::get('/login',[AuthController::class,'showLogin'])->name('login');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::post('/authenticate', [AuthController::class, 'Authentication'])->name('login.post');
