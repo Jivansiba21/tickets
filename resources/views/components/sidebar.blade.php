@@ -1,7 +1,8 @@
 <aside class="sidebar-nav-wrapper">
       <div class="navbar-logo">
         <a href="index.html">
-          <img src="assets/images/logo/logo.svg" alt="logo">
+          <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="logo">
+
         </a>
       </div>
       <nav class="sidebar-nav">
@@ -18,7 +19,7 @@
             </a>
             <ul id="ddmenu_1" class="collapse show dropdown-nav">
               <li>
-                <a href="index.html" class="active"> eCommerce </a>
+                <a href="{{ route('home') }}" class="active"> home </a>
               </li>
             </ul>
           </li>
@@ -38,10 +39,12 @@
 
                 <ul id="tickets_menu" class="collapse dropdown-nav">
                   <li>
-                    <a href="#">Create</a>
+                    <a href="{{ route('tickets.create') }}">Create</a>
+
                   </li>
                   <li>
-                    <a href="#">View Tickets</a>
+                    <a href="{{ route('tickets.index') }}">View Tickets</a>
+
                   </li>
                 </ul>
               </li>
@@ -124,6 +127,14 @@
             </li>
           @endif
 
+        <li class="nav-item mt-3">
+          <form method="POST" action="{{ route('logout') }}">
+              @csrf
+            <button type="submit" class="nav-link btn btn-link text-start w-100" style="text-decoration: none;">
+              <i class="lni lni-exit"></i> Logout
+            </button>
+          </form>
+        </li>
 
 
 

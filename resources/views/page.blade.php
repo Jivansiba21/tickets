@@ -9,9 +9,9 @@
     @endif
     
     <h2> HOME PAGE</h2>
-    <p> thhhhhhhhhhhhhhhhhhhhhhhhhhhhjeeeeeeeeeeeeeeeeeeeeeeeeeeeeeernh
+    {{-- <p> thhhhhhhhhhhhhhhhhhhhhhhhhhhhjeeeeeeeeeeeeeeeeeeeeeeeeeeeeeernh
         wqeeeeeeeeeeeeeeeeeeeeeeeecccccccccccccccccccccccccccrrrrrrrrr
-    </p>
+    </p> --}}
 @endsection
 
 @section('title')
