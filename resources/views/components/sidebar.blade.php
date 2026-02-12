@@ -33,7 +33,7 @@
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M11.8097 1.66667..."></path>
                     </svg>
-                  </span>
+                  </span> 
                   <span class="text">Tickets</span>
                 </a>
 
