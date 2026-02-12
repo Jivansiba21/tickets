@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\TicketMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -37,6 +39,21 @@ class TicketController extends Controller
         return view('tickets.index', compact('tickets'));
     }
 
+    public function show($id)
+    {
+        $tickets = Ticket::with('messages.user')->find($id);
+        return view('tickets.show', compact('tickets'));
+    }
+
+    public function reply(Request $request, $id)
+    {
+        TicketMessage::create([
+            'ticket_id' => $id,
+            'user_id' => Auth::id(),
+            'message' => $request->message,
+        ]);
+        return back();
+    }
 
 
 

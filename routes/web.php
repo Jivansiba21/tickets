@@ -43,3 +43,9 @@ Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index'
 Route::get('/home', function () {
     return view('page');
 })->name('home');
+
+Route::get('/tickets/{id}', [TicketController::class,'show'])
+        ->name('tickets.show');
+
+Route::post('/tickets/{id}/reply', [TicketController::class,'reply'])
+        ->name('tickets.reply');

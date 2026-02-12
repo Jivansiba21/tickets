@@ -6,20 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    protected $fillable = [
-    'title',
-    'description',
-    'priority',
-    'date',
-];
+        protected $fillable = [
+        'title',
+        'description',
+        'priority',
+        'date',
+    ];
 
 
-    public function users(){
-        return $this->belongsToMany(User::class, 'ticket_users');
-    }
+        public function users(){
+            return $this->belongsToMany(User::class, 'ticket_users');
+        }
 
-    public function agents(){
-        return $this->belongsToMany(User::class, 'ticket_agents');
-    }
+        public function agents(){
+            return $this->belongsToMany(User::class, 'ticket_agents');
+        }
+
+        public function messages(){
+         return $this->hasMany(TicketMessage::class);
+        }
+
 
 }
