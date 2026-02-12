@@ -43,6 +43,30 @@
                     <label>Date</label>
                     <input type="date" name="date" class="form-control">
                 </div>
+                @if(auth()->user()->role->role == 'admin')
+
+                    <div class="mb-3">
+                        <label>Select User</label>
+                        <select name="user_id" class="form-control">
+                            <option value="">Select User</option>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Assign Agent</label>
+                        <select name="agent_id" class="form-control">
+                            <option value="">Select Agent</option>
+                            @foreach($agents as $agent)
+                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                @endif
+
 
                 <button type="submit" class="btn btn-primary">
                     Create Ticket

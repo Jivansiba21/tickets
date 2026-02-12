@@ -18,6 +18,10 @@
                         <th>Description</th>
                         <th>Priority</th>
                         <th>Date</th>
+                    @if(auth()->user()->role == 'admin')
+                        <th>User ID</th>
+                        <th>Agent ID</th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +32,11 @@
                             <td>{{ $ticket->description }}</td>
                             <td>{{ $ticket->priority }}</td>
                             <td>{{ $ticket->date }}</td>
+
+                        @if(auth()->user()->role == 'admin')
+                            <td>{{ $ticket->user_id }}</td>
+                            <td>{{ $ticket->agent_id }}</td>
+                        @endif
                         </tr>
                     @endforeach
                 </tbody>

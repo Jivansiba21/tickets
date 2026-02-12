@@ -17,6 +17,10 @@ return new class extends Migration
             $table->text('description');
             $table->enum('priority', ['low', 'medium', 'high'])
                     ->default('medium');
+                    
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('agent_id')->nullable()->constrained('users')->onDelete('cascade');
+
             $table->date('date');
             $table->timestamps();
         });

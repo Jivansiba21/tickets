@@ -77,7 +77,6 @@
                 </ul>
               </li>
           @endif
-
           @if (auth()->user()->role->role =='admin')
 
             <li class="nav-item nav-item-has-children">
