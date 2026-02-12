@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     public function role(){
-        return $this->hasOne(UserRole::class);
+        return $this->hasOne(UserRole::class, 'user_id');
     }
 
     public function tickets(){

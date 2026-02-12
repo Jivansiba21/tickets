@@ -52,19 +52,31 @@
           @endif
 
           @if (auth()->user()->role->role =='agent')
+                <li class="nav-item nav-item-has-children">
+                <a href="#0"
+                  class="collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#agent_ticket_menu"
+                  aria-controls="agent_ticket_menu"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
 
-            <li class="nav-item">
-              <a href="#">
-                <span class="icon">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M11.8097 1.66667..."></path>
-                  </svg>
-                </span>
-                <span class="text">View Tickets</span>
-              </a>
-            </li>
+                  <span class="icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M11.8097 1.66667..."></path>
+                    </svg>
+                  </span>
+
+                  <span class="text">Tickets</span>
+                </a>
+
+                <ul id="agent_ticket_menu" class="collapse dropdown-nav">
+                  <li>
+                    <a href="{{ route('tickets.index') }}">View Tickets</a>
+                  </li>
+                </ul>
+              </li>
           @endif
-
           @if (auth()->user()->role->role =='admin')
 
             <li class="nav-item nav-item-has-children">
