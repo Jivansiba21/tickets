@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -32,7 +33,7 @@ Route::post('/authenticate', [LoginController::class, 'Authentication'])->name('
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-//Route::resource('tickets', TicketController::class);
+Route::resource('tickets', TicketController::class);
 
 
 
@@ -44,8 +45,26 @@ Route::get('/home', function () {
     return view('page');
 })->name('home');
 
-Route::get('/tickets/{id}', [TicketController::class,'show'])
+Route::get('/tickets/{id}', [MessageController::class,'show'])
         ->name('tickets.show');
 
-Route::post('/tickets/{id}/reply', [TicketController::class,'reply'])
+Route::post('/tickets/{id}/reply', [MessageController::class,'reply'])
         ->name('tickets.reply');
+
+
+Route::get('/tickets/{id}/message', [TicketController::class, 'message'])->name('tickets.message');
+
+Route::get('/tickets/{id}', [TicketController::class, 'show'])
+    ->name('tickets.show');
+
+//edit ticket details
+Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])
+    ->name('tickets.edit');
+
+Route::put('/tickets/{id}', [TicketController::class, 'update'])
+    ->name('tickets.update');
+
+
+//delete ticket
+Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])
+    ->name('tickets.destroy');
