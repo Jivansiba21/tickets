@@ -61,7 +61,7 @@ class TicketController extends Controller
             'priority' => $request->priority,
             'date' => $request->date,
             'user_id' => Auth::id(),
-            'agent_id' => null,
+            //'agent_id' => null,
         ]);
     }
 
@@ -70,25 +70,26 @@ class TicketController extends Controller
 
 
     public function index()
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
-    if ($user && $user->role?->role === 'agent') {
+        if ($user && $user->role?->role === 'agent') {
 
-        
-        $tickets = Ticket::where('agent_id', $user->id)->get();
+            
+            $tickets = Ticket::where('agent_id', $user->id)->get();
 
-    } elseif ($user && $user->role?->role === 'user') {
-
-    
-        $tickets = Ticket::where('user_id', $user->id)->get();
-
-    } else {
+        } elseif ($user && $user->role?->role === 'user') {
 
         
-        $tickets = Ticket::all();
+            $tickets = Ticket::where('user_id', $user->id)->get();
+
+        } else {
+
+            
+            $tickets = Ticket::all();
+        }
+        return view('tickets.index', compact('tickets'));
     }
-}
     public function show($id)
     {
         $tickets = Ticket::with('messages.user')->find($id);
@@ -105,6 +106,10 @@ class TicketController extends Controller
         return back();
     }
 
-
+    public function fetchMessages($id)
+    {
+        $messages = TicketMessage::with('user')->where('ticket_id', $id)->get();
+        return response()->json($messages);
+    }
 
 }

@@ -49,3 +49,7 @@ Route::get('/tickets/{id}', [TicketController::class,'show'])
 
 Route::post('/tickets/{id}/reply', [TicketController::class,'reply'])
         ->name('tickets.reply');
+
+Route::get('/tickets/{id}/messages', [TicketController::class,'fetchMessages'])
+        ->name('tickets.messages');
+
