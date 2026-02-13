@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\UserRole;
 use App\Models\Ticket;
 use App\Models\TicketMessage;
 use Illuminate\Http\Request;
@@ -90,21 +89,52 @@ class TicketController extends Controller
         }
         return view('tickets.index', compact('tickets'));
     }
-    public function show($id)
-    {
-        $tickets = Ticket::with('messages.user')->find($id);
-        return view('tickets.show', compact('tickets'));
-    }
 
-    public function reply(Request $request, $id)
-    {
-        TicketMessage::create([
-            'ticket_id' => $id,
-            'user_id' => Auth::id(),
-            'message' => $request->message,
-        ]);
-        return back();
-    }
+
+
+    public function show($id)
+{
+    $ticket = Ticket::findOrFail($id);
+    return view('tickets.showTickets', compact('ticket'));
+
+}
+
+
+
+//edit ticket details
+public function edit($id)
+{
+    $ticket = Ticket::findOrFail($id);
+
+    return view('tickets.edit', compact('ticket'));
+}
+
+public function update(Request $request, $id)
+{
+    $ticket = Ticket::findOrFail($id);
+
+    $ticket->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'priority' => $request->priority,
+        'date' => $request->date,
+    ]);
+
+    return redirect()->route('tickets.index')
+        ->with('success', 'Ticket updated successfully');
+}
+
+//delete ticket
+public function destroy($id)
+{
+    $ticket = Ticket::findOrFail($id);
+
+    $ticket->delete();
+
+    return redirect()->route('tickets.index')
+        ->with('success', 'Ticket deleted successfully');
+}
+
 
     public function fetchMessages($id)
     {
