@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
   </head>
   <body>
     <!-- ======== Preloader =========== -->

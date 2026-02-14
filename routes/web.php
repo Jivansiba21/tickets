@@ -1,11 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AgentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TicketController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 
 
@@ -33,41 +36,68 @@ Route::post('/authenticate', [LoginController::class, 'Authentication'])->name('
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::resource('tickets', TicketController::class);
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
 
 
 
-Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
-Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
-Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
 
-Route::get('/home', function () {
-    return view('page');
-})->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('tickets', TicketController::class);
 
-Route::get('/tickets/{id}', [MessageController::class,'show'])
+
+
+    Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
+    Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
+    Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
+
+    Route::get('/home', function () {
+        return view('page');
+    })->name('home');
+
+    Route::get('/tickets/{id}', [MessageController::class, 'show'])
         ->name('tickets.show');
 
-Route::post('/tickets/{id}/reply', [MessageController::class,'reply'])
+    Route::post('/tickets/{id}/reply', [MessageController::class, 'reply'])
         ->name('tickets.reply');
 
-Route::get('/tickets/{id}/messages', [TicketController::class,'fetchMessages'])
+    Route::get('/tickets/{id}/messages', [TicketController::class, 'fetchMessages'])
         ->name('tickets.messages');
 
 
-Route::get('/tickets/{id}/message', [TicketController::class, 'message'])->name('tickets.message');
+    Route::get('/tickets/{id}/message', [TicketController::class, 'message'])->name('tickets.message');
 
-Route::get('/tickets/{id}', [TicketController::class, 'show'])
-    ->name('tickets.show');
+    Route::get('/tickets/{id}', [TicketController::class, 'show'])
+        ->name('tickets.show');
 
-//edit ticket details
-Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])
-    ->name('tickets.edit');
+    //edit ticket details
+    Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])
+        ->name('tickets.edit');
 
-Route::put('/tickets/{id}', [TicketController::class, 'update'])
-    ->name('tickets.update');
+    Route::put('/tickets/{id}', [TicketController::class, 'update'])
+        ->name('tickets.update');
 
 
-//delete ticket
-Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])
-    ->name('tickets.destroy');
+    //delete ticket
+    Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])
+        ->name('tickets.destroy');
+
+
+    //user management routes(admin only)
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+    //agent management routes(admin only)
+
+    Route::get('/agents', [AgentController::class, 'index'])->name('agents.index');
+
+    Route::get('/agents/create', [AgentController::class, 'create'])->name('agents.create');
+
+    Route::post('/agents', [AgentController::class, 'store'])->name('agents.store');
+});
