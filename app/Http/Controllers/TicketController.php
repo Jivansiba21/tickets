@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\TicketMessage;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,22 +15,20 @@ class TicketController extends Controller
 {
     public function create()
     {
-        if(Auth::user() && Auth::user()->role->role == 'admin') {
+        if (Auth::user() && Auth::user()->role->role == 'admin') {
 
-        $users = User::whereHas('role', function($q){
-            $q->where('role', 'user');
-        })->get();
+            $users = User::whereHas('role', function ($q) {
+                $q->where('role', 'user');
+            })->get();
 
-        $agents = User::whereHas('role', function($q){
-            $q->where('role', 'agent');
-        })->get();
+            $agents = User::whereHas('role', function ($q) {
+                $q->where('role', 'agent');
+            })->get();
 
-        return view('tickets.create_ticket', compact('users','agents'));
-
-    } else {
-        return view('tickets.create_ticket');
-    }
-
+            return view('tickets.create_ticket', compact('users', 'agents'));
+        } else {
+            return view('tickets.create_ticket');
+        }
     }
 
     public function store(Request $request)
@@ -41,31 +40,30 @@ class TicketController extends Controller
             'date' => 'required|date',
         ]);
 
-        if(Auth::user() && Auth::user()->role->role == 'admin') {
+        if (Auth::user() && Auth::user()->role->role == 'admin') {
 
-        Ticket::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'priority' => $request->priority,
-            'date' => $request->date,
-            'user_id' => $request->user_id,
-            'agent_id' => $request->agent_id,
-        ]);  
+            Ticket::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'priority' => $request->priority,
+                'date' => $request->date,
+                'user_id' => $request->user_id,
+                'agent_id' => $request->agent_id,
+            ]);
+        } else {
 
-    } else {
+            Ticket::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'priority' => $request->priority,
+                'date' => $request->date,
+                'user_id' => Auth::id(),
+                //'agent_id' => null,
+            ]);
+        }
 
-        Ticket::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'priority' => $request->priority,
-            'date' => $request->date,
-            'user_id' => Auth::id(),
-            //'agent_id' => null,
-        ]);
+        return redirect()->back()->with('success', 'Ticket Created Successfully');
     }
-
-    return redirect()->back()->with('success','Ticket Created Successfully');
-}
 
 
     public function index()
@@ -74,17 +72,15 @@ class TicketController extends Controller
 
         if ($user && $user->role?->role === 'agent') {
 
-            
-            $tickets = Ticket::where('agent_id', $user->id)->get();
 
+            $tickets = Ticket::where('agent_id', $user->id)->get();
         } elseif ($user && $user->role?->role === 'user') {
 
-        
-            $tickets = Ticket::where('user_id', $user->id)->get();
 
+            $tickets = Ticket::where('user_id', $user->id)->get();
         } else {
 
-            
+
             $tickets = Ticket::all();
         }
         return view('tickets.index', compact('tickets'));
@@ -93,53 +89,65 @@ class TicketController extends Controller
 
 
     public function show($id)
-{
-    $ticket = Ticket::findOrFail($id);
-    return view('tickets.showTickets', compact('ticket'));
-
-}
-
+    {
+        $ticket = Ticket::findOrFail($id);
+        return view('tickets.showTickets', compact('ticket'));
+    }
 
 
-//edit ticket details
-public function edit($id)
-{
-    $ticket = Ticket::findOrFail($id);
 
-    return view('tickets.edit', compact('ticket'));
-}
+    //edit ticket details
+    public function edit($id)
+    {
+        $ticket = Ticket::findOrFail($id);
 
-public function update(Request $request, $id)
-{
-    $ticket = Ticket::findOrFail($id);
+        return view('tickets.edit', compact('ticket'));
+    }
 
-    $ticket->update([
-        'title' => $request->title,
-        'description' => $request->description,
-        'priority' => $request->priority,
-        'date' => $request->date,
-    ]);
+    public function update(Request $request, $id)
+    {
+        $ticket = Ticket::findOrFail($id);
 
-    return redirect()->route('tickets.index')
-        ->with('success', 'Ticket updated successfully');
-}
+        $ticket->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'priority' => $request->priority,
+            'date' => $request->date,
+        ]);
 
-//delete ticket
-public function destroy($id)
-{
-    $ticket = Ticket::findOrFail($id);
+        return redirect()->route('tickets.index')
+            ->with('success', 'Ticket updated successfully');
+    }
 
-    $ticket->delete();
+    //delete ticket
+    public function destroy($id)
+    {
+        $ticket = Ticket::findOrFail($id);
 
-    return redirect()->route('tickets.index')
-        ->with('success', 'Ticket deleted successfully');
-}
+        $ticket->delete();
+
+        return redirect()->route('tickets.index')
+            ->with('success', 'Ticket deleted successfully');
+    }
 
 
     public function fetchMessages($id)
     {
-        $messages = TicketMessage::with('user')->where('ticket_id', $id)->get();
-        return response()->json($messages);
-    }
+        try {
+            $messages = TicketMessage::with('user')->where(['ticket_id' => $id , 'read_at' =>null])->get();
+            $data = [
+                'error' => false,
+                'message' =>'Messages retrived successfully',
+                'messages' => $messages
+            ];
+        } catch (Exception $e) {
+            $data = [
+                'error' => true,
+                'message' => $e->getMessage()
+            ];
+        }
 
+
+        return response()->json($data);
+    }
 }

@@ -55,10 +55,10 @@ Route::get('/tickets/{id}/messages', [TicketController::class,'fetchMessages'])
         ->name('tickets.messages');
 
 
-Route::get('/tickets/{id}/message', [TicketController::class, 'message'])->name('tickets.message');
+//Route::get('/tickets/{id}/message', [MessageController::class, 'show'])->name('tickets.message');
 
-Route::get('/tickets/{id}', [TicketController::class, 'show'])
-    ->name('tickets.show');
+Route::get('/tickets/{id}/chat', [MessageController::class, 'show'])
+    ->name('tickets.chat');
 
 //edit ticket details
 Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])
@@ -71,3 +71,5 @@ Route::put('/tickets/{id}', [TicketController::class, 'update'])
 //delete ticket
 Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])
     ->name('tickets.destroy');
+
+Route::post('tickets/read-message',[MessageController::class,'readMessage'])->name('tickets.readMessage');

@@ -57,9 +57,8 @@
                                 </a>
 
                                 
-                                <a href="{{ route('tickets.message', $ticket->id) }}" class="btn btn-secondary btn-sm">
-                                    Message
-                                </a>
+                                <a href="{{ route('tickets.chat', $ticket->id) }}" class="btn btn-secondary">Message</a>
+
 
                                 
                                 @if(Auth::user() && Auth::user()->role->role == 'admin')
