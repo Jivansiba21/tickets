@@ -92,10 +92,10 @@
 
               <ul id="users_menu" class="collapse dropdown-nav">
                 <li>
-                  <a href="#">Create</a>
+                  <a href="{{ route('users.create') }}">Create</a>
                 </li>
                 <li>
-                  <a href="#">View Users</a>
+                  <a href="{{ route('users.index') }}">View Users</a>
                 </li>
               </ul>
             </li>
@@ -116,10 +116,10 @@
 
               <ul id="agents_menu" class="collapse dropdown-nav">
                 <li>
-                  <a href="#">Create</a>
+                  <a href="{{ route('agents.create') }}">Create</a>
                 </li>
                 <li>
-                  <a href="#">View Agents</a>
+                  <a href="{{ route('agents.index') }}">View Agents</a>
                 </li>
               </ul>
             </li>

@@ -21,7 +21,7 @@
                 
             
                 <!-- notification start -->
-                <div class="notification-box ml-15 d-none d-md-flex">
+                <!-- <div class="notification-box ml-15 d-none d-md-flex">
                   <button class="dropdown-toggle" type="button" id="notification" data-bs-toggle="dropdown" aria-expanded="false">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M11 20.1667C9.88317 20.1667 8.88718 19.63 8.23901 18.7917H13.761C13.113 19.63 12.1169 20.1667 11 20.1667Z" fill=""></path>
@@ -71,10 +71,10 @@
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> -->
                 <!-- notification end -->
                 <!-- message start -->
-                <div class="header-message-box ml-15 d-none d-md-flex">
+                <!-- <div class="header-message-box ml-15 d-none d-md-flex">
                   <button class="dropdown-toggle" type="button" id="message" data-bs-toggle="dropdown" aria-expanded="false">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M7.74866 5.97421C7.91444 5.96367 8.08162 5.95833 8.25005 5.95833C12.5532 5.95833 16.0417 9.4468 16.0417 13.75C16.0417 13.9184 16.0364 14.0856 16.0259 14.2514C16.3246 14.138 16.6127 14.003 16.8883 13.8482L19.2306 14.629C19.7858 14.8141 20.3141 14.2858 20.129 13.7306L19.3482 11.3882C19.8694 10.4604 20.1667 9.38996 20.1667 8.25C20.1667 4.70617 17.2939 1.83333 13.75 1.83333C11.0077 1.83333 8.66702 3.55376 7.74866 5.97421Z" fill=""></path>
@@ -120,7 +120,7 @@
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> -->
                 <!-- message end -->
                 <!-- profile start -->
                 <div class="profile-box ml-15">
@@ -151,25 +151,13 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                      <a href="#0">
-                        <i class="lni lni-user"></i> View Profile
-                      </a>
+                        <button id="logoutBtn" class="bg-none dropdown-item rounded shadow-none text-sm" type="button">
+                          <i class="lni lni-user me-2"></i> Logout
+                        </button>
                     </li>
-                    <li>
-                      <a href="#0">
-                        <i class="lni lni-alarm"></i> Notifications
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
-                    </li>
+                      
+
+                    
                   </ul>
                 </div>
                 <!-- profile end -->
@@ -178,3 +166,25 @@
           </div>
         </div>
       </header>
+
+    
+      <script>
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+          fetch('/logout', {
+            method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+              'Content-Type': 'application/json'            },
+          })
+          .then(response => {
+            if (response.ok) {
+              window.location.href = '/login';
+            } else {
+              console.error('Logout failed');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+        });
+        });
+      </script>
