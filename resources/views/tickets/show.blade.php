@@ -32,6 +32,7 @@
 
 
         <div class="card-footer">
+            {{-- @dd($ticket) --}}
             <form action="{{ route('tickets.reply',$ticket->id) }}" method="POST">
                 @csrf
 
@@ -77,6 +78,7 @@ function fetchMessages() {
                     '</div>';
 
                         $('#message-box').append(html);
+                         readMessage(msg.id);
                        
                 }else{
                      var html = 

@@ -11,15 +11,16 @@ use Illuminate\Support\Facades\Auth;
 class MessageController extends Controller
 {
     public function show($id)
-    {
+    {  
+        // dd(Ticket::find($id));
        $ticket = Ticket::with('messages.user')
         ->where('id', $id)
-        ->whereHas('messages', function ($query) {
+        ->orWhereHas('messages', function ($query) {
             $query->whereNotNull('read_at');
         })
         ->first();   // ✅ returns SINGLE model
         // dd($ticket);
-        $messages = $ticket->messages;
+        $messages = optional($ticket->messages ?? collect()); // ✅ returns collection, even if no messages
         return view('tickets.show', compact('ticket','messages'));
     }
 
