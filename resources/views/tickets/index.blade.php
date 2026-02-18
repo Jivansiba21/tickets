@@ -45,6 +45,7 @@
                             <td>{{ $ticket->date }}</td>
 
                             @if(Auth::user() && Auth::user()->role->role == 'admin')
+                            @dd()
                                 <td>{{ $ticket->user_id }}</td>
                                 <td>{{ $ticket->agent_id }}</td>
                             @endif

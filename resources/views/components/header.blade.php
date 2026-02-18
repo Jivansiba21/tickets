@@ -131,8 +131,10 @@
                           <img src="assets/images/profile/profile-image.png" alt="">
                         </div>
                         <div>
-                          <h6 class="fw-500">Adam Joe</h6>
-                          <p>Admin</p>
+                          <h6 class="fw-500">{{auth()->user()->name}}</h6>
+                          <small class="text-muted">
+                            <p>{{auth()->user()->role->role }}</p>
+                          </small>
                         </div>
                       </div>
                     </div>

@@ -25,4 +25,8 @@ class TicketMessage extends Model
     }
 
 
+    public function attachments()
+    {
+        return $this->hasMany(MessageAttachment::class,'message_id');
+    }
 }
