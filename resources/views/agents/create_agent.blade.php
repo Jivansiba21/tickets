@@ -28,6 +28,11 @@
         <button type="submit" class="btn btn-primary mb-3">
             Save Agent
         </button>
+        <a href="{{ route('agents.index') }}" 
+                   class="btn btn-secondary mb-3">
+                   Back
+                </a>
+
 
         
     </form>

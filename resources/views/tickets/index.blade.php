@@ -17,7 +17,7 @@
 
         <div class="card-body">
 
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -57,7 +57,7 @@
                                 </a>
 
                                 
-                                <a href="{{ route('tickets.chat', $ticket->id) }}" class="btn btn-secondary">Message</a>
+                                {{-- <a href="{{ route('tickets.chat', $ticket->id) }}" class="btn btn-secondary">Message</a> --}}
 
 
                                 

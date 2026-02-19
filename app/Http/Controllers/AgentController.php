@@ -40,4 +40,40 @@ class AgentController extends Controller
 
         return redirect()->back()->with('success', 'Agent created successfully');
     }
+
+
+
+    public function show($id)
+{
+    $agent = User::findOrFail($id);
+    return view('agents.show_agent', compact('agent'));
+}
+
+
+    public function edit($id)
+{
+    $agent = User::findOrFail($id);
+    return view('agents.edit', compact('agent'));
+}
+    public function update(Request $request, $id)
+{
+    $agent = User::findOrFail($id);
+
+    $agent->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => $request->password ? bcrypt($request->password) : $agent->password,
+    ]);
+
+    return redirect()->route('agents.index')
+                     ->with('success', 'Agent updated successfully.');
+}
+    public function destroy($id)
+    {
+        $agent = User::findOrFail($id);
+        $agent->delete();
+
+        return redirect()->route('agents.index')
+                         ->with('success', 'Agent deleted successfully.');
+    }
 }

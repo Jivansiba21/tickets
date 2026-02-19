@@ -18,11 +18,11 @@ class Ticket extends Model
 
 
         public function users(){
-            return $this->belongsToMany(User::class, 'ticket_users');
+            return $this->belongsTo(User::class, 'user_id');
         }
 
         public function agents(){
-            return $this->belongsToMany(User::class, 'ticket_agents');
+            return $this->belongsTo(User::class, 'agent_id');
         }
 
         public function messages(){
