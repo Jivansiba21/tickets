@@ -41,15 +41,15 @@
             </div>
 
                 <div class="mb-3">
-                    <label>User ID</label>
-                    <input type="number" name="user_id" class="form-control"
-                        value="{{ $ticket->user_id }}">
+                    <label>User </label>
+                    <input type="text" name="user_id" class="form-control"
+                        value="{{ $ticket->user->name }}" disabled>
                 </div>  
 
                 <div class="mb-3">
-                        <label>Agent ID</label>
-                        <input type="number" name="agent_id" class="form-control"
-                            value="{{ $ticket->agent_id }}">
+                        <label>Agent</label>
+                        <input type="text" name="agent_id" class="form-control"
+                            value="{{ $ticket->agent->name }}" disabled>
                 </div>
             
             <button type="submit" class="btn btn-primary">

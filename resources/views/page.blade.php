@@ -2,51 +2,42 @@
 
 @section('content')
 
-    @if (session('message'))
-        <div class="text-success">
-            {{ session('message') }} 
-        </div>       
-    @endif
-    
-<div class="row">
+<div class="container mt-4">
+    {{-- <h3 class="mb-4">Admin Dashboard</h3> --}}
 
-    <!-- My Tickets -->
-    <div class="col-md-4">
-        <div class="card text-white bg-primary mb-3">
-            <div class="card-body">
-                <h5 class="card-title">My Tickets</h5>
-                {{-- <h2>{{ $myTicketsCount }}</h2> --}}
+    <div class="row">
+
+        <!-- Total Users -->
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5>Total Users</h5>
+                    <h2>{{ $totalUsers }}</h2>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Ongoing -->
-    <div class="col-md-4">
-        <div class="card text-white bg-warning mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Ongoing Tickets</h5>
-                {{-- <h2>{{ $ongoingCount }}</h2> --}}
+        <!-- Total Agents -->
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5>Total Agents</h5>
+                    {{-- <h2>{{ $totalAgents }}</h2> --}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Closed -->
-    <div class="col-md-4">
-        <div class="card text-white bg-success mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Closed Tickets</h5>
-                {{-- <h2>{{ $closedCount }}</h2> --}}
+        <!-- Total Tickets -->
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5>Total Tickets</h5>
+                    <h2>{{ $totalTickets }}</h2>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
 @endsection
-
-@section('title')
-    home
-@endsection
-
-
-    

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RegisterController;
@@ -12,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/page', function () {
-    return view('page');
-});
+
+// Route::get('/page', function () {
+//     return view('page');
+// });
+
 
 // Route::get('/github-test', function () {
 //     return view('welcome');
@@ -53,9 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
     Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
 
-    Route::get('/home', function () {
-        return view('page');
-    })->name('home');
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
 
     Route::get('/tickets/{id}', [MessageController::class, 'show'])
         ->name('tickets.show');
