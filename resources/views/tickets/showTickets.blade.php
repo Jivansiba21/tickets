@@ -13,7 +13,8 @@
         <p><strong>Description:</strong> {{ $ticket->description }}</p>
 
     @if(auth()->user()->role->role == 'admin')
-        <p><strong>User ID:</strong> {{ $ticket->user_id }}</p>
+    
+        <p><strong>User Name:</strong> {{ $ticket->user->name }}</p>
         <p><strong>Agent ID:</strong> {{ $ticket->agent_id }}</p>
     @endif
 

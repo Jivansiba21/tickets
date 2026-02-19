@@ -139,14 +139,14 @@
             </li>
           @endif
 
-        <li class="nav-item mt-3">
+        {{-- <li class="nav-item mt-3">
           <form method="POST" action="{{ route('logout') }}">
               @csrf
             <button type="submit" class="nav-link btn btn-link text-start w-100" style="text-decoration: none;">
               <i class="lni lni-exit"></i> Logout
             </button>
           </form>
-        </li>
+        </li> --}}
 
 
 

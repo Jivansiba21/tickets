@@ -2,38 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\MessageAttachment;
 use App\Models\Ticket;
 use App\Models\TicketMessage;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
     public function show($id)
-    {  
+    {
         // dd(Ticket::find($id));
-       $ticket = Ticket::with('messages.user')
-        ->where('id', $id)
-        ->orWhereHas('messages', function ($query) {
-            $query->whereNotNull('read_at');
-        })
-        ->first();   // ✅ returns SINGLE model
+        $ticket = Ticket::with('messages.user')
+            ->where('id', $id)
+            ->orWhereHas('messages', function ($query) {
+                $query->whereNotNull('read_at');
+            })
+            ->first();   // ✅ returns SINGLE model
         // dd($ticket);
-        $messages = optional($ticket->messages ?? collect()); // ✅ returns collection, even if no messages
-        return view('tickets.show', compact('ticket','messages'));
+        // $messages = optional($ticket->messages ?? collect()); // ✅ returns collection, even if no messages
+        //dd($messages);
+        return view('tickets.show', compact('ticket'));
     }
 
     public function reply(Request $request, $id)
     {
-        TicketMessage::create([
+
+
+        // dd($request);
+    try{
+        $request->validate([
+            'photo.*' => 'mimes:png,jpg,jpeg|max:3000',
+            'message' => 'required|max:300|string'
+        ]);
+
+
+    
+
+        $message =    TicketMessage::create([
             'ticket_id' => $id,
             'user_id' => Auth::id(),
             'message' => $request->message,
         ]);
 
+        if($request->has('photo')){
+            foreach($request->photo as $img){
+                
+                 $path = $img->store('message-attachments', 'public');
+                 $attachment = MessageAttachment::create([
+                    'message_id' => $message->id,
+                    'filepath' => $path
+                 ]);
+            }
+           
+        }
+
         
+
         return back();
+        }
+        catch(Exception $e){
+            dd($e);
+        }
     }
 
     public function readMessage(Request $request)

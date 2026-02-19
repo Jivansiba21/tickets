@@ -83,6 +83,8 @@ class TicketController extends Controller
 
             $tickets = Ticket::all();
         }
+        $tickets = $tickets->load('user');
+        //dd($tickets);
         return view('tickets.index', compact('tickets'));
     }
 
