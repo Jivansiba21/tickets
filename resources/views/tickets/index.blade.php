@@ -6,7 +6,6 @@
     <div class="card">
         <div class="card-header">
             <h4>All Tickets</h4>
-            
 
             @if(Auth::user() && Auth::user()->role->role == 'admin')
                 <a href="{{ route('tickets.create') }}" class="btn btn-primary btn-sm float-end">
@@ -26,14 +25,13 @@
                         <th>Priority</th>
                         <th>Status</th>
                         <th>Date</th>
-                        
 
                         @if(Auth::user() && Auth::user()->role->role == 'admin')
                             <th>User ID</th>
                             <th>Agent ID</th>
                         @endif
 
-                        <th>Actions</th> 
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
@@ -46,19 +44,17 @@
                             <td>{{ $ticket->priority }}</td>
 
                             <td>
-
                                 @if(Auth::user()->role->role == 'admin')
-                                <form action="{{ route('tickets.status',$ticket->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <select name="status" onchange="this.form.submit()" class="form-control">
-                                        <option value="open" {{ $ticket->status=='open'?'selected':'' }}>Open</option>
-                                        <option value="in_progress" {{ $ticket->status=='in_progress'?'selected':'' }}>Processing</option>
-                                        <option value="closed" {{ $ticket->status=='closed'?'selected':'' }}>Closed</option>
-                                    </select>
-                                </form>
+                                    <form action="{{ route('tickets.status',$ticket->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <select name="status" onchange="this.form.submit()" class="form-control">
+                                            <option value="open" {{ $ticket->status=='open'?'selected':'' }}>Open</option>
+                                            <option value="in_progress" {{ $ticket->status=='in_progress'?'selected':'' }}>Processing</option>
+                                            <option value="closed" {{ $ticket->status=='closed'?'selected':'' }}>Closed</option>
+                                        </select>
+                                    </form>
                                 @else
-
                                     @if($ticket->status == 'open')
                                         <span class="badge bg-success">Open</span>
                                     @elseif($ticket->status == 'in_progress')
@@ -69,63 +65,43 @@
                                 @endif
                             </td>
 
-
-                            <td>{{ $ticket->date }}</td>
-
                             <td>{{ $ticket->date }}</td>
 
                             @if(Auth::user() && Auth::user()->role->role == 'admin')
-                        
                                 <td>{{ $ticket->user_id }}</td>
                                 <td>{{ $ticket->agent_id }}</td>
                             @endif
 
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+                            <td>
+                                <a href="{{ route('tickets.show', $ticket->id) }}" class="btn btn-info btn-sm">
+                                    View
+                                </a>
 
-                    <tbody>
-                        @foreach ($tickets as $ticket)
-                            <tr>
-                                <td>{{ $ticket->id }}</td>
-                                <td>{{ $ticket->title }}</td>
-                                <td>{{ $ticket->description }}</td>
-                                <td>{{ $ticket->priority }}</td>
-                                <td>{{ $ticket->date }}</td>
+                                <a href="{{ route('tickets.chat', $ticket->id) }}" class="btn btn-secondary btn-sm">
+                                    Message
+                                </a>
 
-                                @if (Auth::user() && Auth::user()->role->role == 'admin')
-                                    <td>{{ $ticket->user->name }}</td>
-                                    <td>{{ $ticket->agent->name }}</td>
-                                @endif
-
-                                <td>
-                                    <a href="{{ route('tickets.show', $ticket->id) }}" class="btn btn-info">
-                                        View
+                                @if(Auth::user() && Auth::user()->role->role == 'admin')
+                                    <a href="{{ route('tickets.edit', $ticket->id) }}" class="btn btn-warning btn-sm">
+                                        Edit
                                     </a>
-                                    <a href="{{ route('tickets.chat', $ticket->id) }}" class="btn btn-secondary">Message</a>
-                                    @if (Auth::user() && Auth::user()->role->role == 'admin')
-                                        <a href="{{ route('tickets.edit', $ticket->id) }}" class="btn btn-warning btn-sm">
-                                            Edit
-                                        </a>
 
-                                        <form action="{{ route('tickets.destroy', $ticket->id) }}" method="POST"
-                                            style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                Delete
-                                            </button>
-                                        </form>
-                                    @endif
+                                    <form action="{{ route('tickets.destroy', $ticket->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            Delete
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-            </div>
         </div>
     </div>
+</div>
+
 @endsection
