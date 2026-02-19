@@ -22,8 +22,8 @@
                             <th>Date</th>
 
                             @if (Auth::user() && Auth::user()->role->role == 'admin')
-                                <th>User ID</th>
-                                <th>Agent ID</th>
+                                <th>User</th>
+                                <th>Agent</th>
                             @endif
 
                             <th>Actions</th>

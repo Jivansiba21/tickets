@@ -15,7 +15,7 @@
     @if(auth()->user()->role->role == 'admin')
     
         <p><strong>User Name:</strong> {{ $ticket->user->name }}</p>
-        <p><strong>Agent ID:</strong> {{ $ticket->agent_id }}</p>
+        <p><strong>Agent Name:</strong> {{ $ticket->agent->name }}</p>
     @endif
 
         <p><strong>Priority:</strong> {{ $ticket->priority }}</p>

@@ -2,21 +2,42 @@
 
 @section('content')
 
-    @if (session('message'))
-        <div class="text-success">
-            {{ session('message') }} 
-        </div>       
-    @endif
-    
-    <h2> HOME PAGE</h2>
-    {{-- <p> thhhhhhhhhhhhhhhhhhhhhhhhhhhhjeeeeeeeeeeeeeeeeeeeeeeeeeeeeeernh
-        wqeeeeeeeeeeeeeeeeeeeeeeeecccccccccccccccccccccccccccrrrrrrrrr
-    </p> --}}
+<div class="container mt-4">
+    {{-- <h3 class="mb-4">Admin Dashboard</h3> --}}
+
+    <div class="row">
+
+        <!-- Total Users -->
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5>Total Users</h5>
+                    <h2>{{ $totalUsers }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Agents -->
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5>Total Agents</h5>
+                    {{-- <h2>{{ $totalAgents }}</h2> --}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Tickets -->
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5>Total Tickets</h5>
+                    <h2>{{ $totalTickets }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 @endsection
-
-@section('title')
-    home
-@endsection
-
-
-    
