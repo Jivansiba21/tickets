@@ -158,6 +158,11 @@ class TicketController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
+
+        $request->validate([
+        'status' => 'required|in:open,processing,close'
+      ]);
+
         $ticket = Ticket::findOrFail($id);
 
         $ticket->status = $request->status;
@@ -166,5 +171,9 @@ class TicketController extends Controller
 
         return back();
     }
+
+
+    
+
 
 }

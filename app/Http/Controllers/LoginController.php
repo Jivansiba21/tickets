@@ -40,4 +40,6 @@ public function logout()
 
     return redirect('/login')->with('message','Logout Successfully');
 }
+
+
 }
