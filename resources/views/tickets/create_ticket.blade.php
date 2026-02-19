@@ -71,6 +71,11 @@
                 <button type="submit" class="btn btn-primary">
                     Create Ticket
                 </button>
+                <a href="{{ route('tickets.index') }}" 
+                   class="btn btn-secondary ">
+                   Back
+                </a>
+
 
             </form>
         </div>

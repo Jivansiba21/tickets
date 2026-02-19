@@ -40,9 +40,26 @@
                     value="{{ $ticket->date }}">
             </div>
 
+                <div class="mb-3">
+                    <label>User ID</label>
+                    <input type="number" name="user_id" class="form-control"
+                        value="{{ $ticket->user_id }}">
+                </div>  
+
+                <div class="mb-3">
+                        <label>Agent ID</label>
+                        <input type="number" name="agent_id" class="form-control"
+                            value="{{ $ticket->agent_id }}">
+                </div>
+            
             <button type="submit" class="btn btn-primary">
                 Update
             </button>
+            <a href="{{ route('tickets.index') }}" 
+                   class="btn btn-secondary ">
+                   Back
+                </a>
+
         </form>
     </div>
 </div>

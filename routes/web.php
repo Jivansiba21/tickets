@@ -108,3 +108,17 @@ Route::post('tickets/read-message',[MessageController::class,'readMessage'])->na
 
 Route::put('/tickets/status/{id}', [TicketController::class,'updateStatus'])
         ->name('tickets.status');
+//edit user details
+
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{id}', [UserController::class, 'show'])
+    ->name('users.show');
+
+//edit agent details
+Route::get('/agents/{id}/edit', [AgentController::class, 'edit'])->name('agents.edit');
+Route::put('/agents/{id}', [AgentController::class, 'update'])->name('agents.update');
+Route::delete('/agents/{id}', [AgentController::class, 'destroy'])->name('agents.destroy');
+Route::get('/agents/{id}', [AgentController::class, 'show'])
+    ->name('agents.show');

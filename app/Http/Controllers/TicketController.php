@@ -84,8 +84,8 @@ class TicketController extends Controller
 
             $tickets = Ticket::all();
         }
-        $tickets = $tickets->load('user');
-        //dd($tickets);
+        $tickets = $tickets->load('user', 'agent');
+        // dd($tickets);
         return view('tickets.index', compact('tickets'));
     }
 
@@ -137,10 +137,10 @@ class TicketController extends Controller
     public function fetchMessages($id)
     {
         try {
-            $messages = TicketMessage::with('user')->where(['ticket_id' => $id , 'read_at' =>null])->get();
+            $messages = TicketMessage::with('user')->where(['ticket_id' => $id, 'read_at' => null])->get();
             $data = [
                 'error' => false,
-                'message' =>'Messages retrived successfully',
+                'message' => 'Messages retrived successfully',
                 'messages' => $messages
             ];
         } catch (Exception $e) {
