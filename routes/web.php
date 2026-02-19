@@ -103,3 +103,8 @@ Route::get('/tickets/{id}/chat', [MessageController::class, 'show'])
 });
 
 Route::post('tickets/read-message',[MessageController::class,'readMessage'])->name('tickets.readMessage');
+
+
+
+Route::put('/tickets/status/{id}', [TicketController::class,'updateStatus'])
+        ->name('tickets.status');

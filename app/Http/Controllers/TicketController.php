@@ -49,6 +49,7 @@ class TicketController extends Controller
                 'date' => $request->date,
                 'user_id' => $request->user_id,
                 'agent_id' => $request->agent_id,
+                'status'=>'open'
             ]);
         } else {
 
@@ -152,4 +153,18 @@ class TicketController extends Controller
 
         return response()->json($data);
     }
+
+
+
+    public function updateStatus(Request $request, $id)
+    {
+        $ticket = Ticket::findOrFail($id);
+
+        $ticket->status = $request->status;
+
+        $ticket->save();
+
+        return back();
+    }
+
 }

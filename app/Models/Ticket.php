@@ -13,6 +13,7 @@ class Ticket extends Model
         'date',
         'user_id',
         'agent_id',
+        'status'
 
     ];
 
