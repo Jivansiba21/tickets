@@ -172,7 +172,10 @@ class TicketController extends Controller
         return back();
     }
 
-
+    public function settings()
+{
+    return view('settings');
+}
     
 
 

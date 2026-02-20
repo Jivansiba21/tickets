@@ -1,145 +1,144 @@
 <aside class="sidebar-nav-wrapper">
-      <div class="navbar-logo">
+    <div class="navbar-logo">
         <a href="index.html">
-          <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="logo">
+            <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="logo">
 
         </a>
-      </div>
-      <nav class="sidebar-nav">
+    </div>
+    <nav class="sidebar-nav">
         <ul>
-          <li class="nav-item nav-item-has-children">
-            <a href="#0" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.74999 18.3333C12.2376 18.3333 15.1364 15.8128 15.7244 12.4941C15.8448 11.8143 15.2737 11.25 14.5833 11.25H9.99999C9.30966 11.25 8.74999 10.6903 8.74999 10V5.41666C8.74999 4.7263 8.18563 4.15512 7.50586 4.27556C4.18711 4.86357 1.66666 7.76243 1.66666 11.25C1.66666 15.162 4.83797 18.3333 8.74999 18.3333Z"></path>
-                  <path d="M17.0833 10C17.7737 10 18.3432 9.43708 18.2408 8.75433C17.7005 5.14918 14.8508 2.29947 11.2457 1.75912C10.5629 1.6568 10 2.2263 10 2.91665V9.16666C10 9.62691 10.3731 10 10.8333 10H17.0833Z"></path>
-                </svg>
-              </span>
-              <span class="text">Dashboard</span>
-            </a>
-            <ul id="ddmenu_1" class="collapse show dropdown-nav">
-              <li>
-                <a href="{{ route('home') }}" class="active"> home </a>
-              </li>
-            </ul>
-          </li>
-
-          @if (auth()->user()->role->role =='user' || auth()->user()->role->role =='admin')
-              <li class="nav-item nav-item-has-children">
-                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#tickets_menu"
-                  aria-controls="tickets_menu" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="icon">
-                    
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M11.8097 1.66667..."></path>
-                    </svg>
-                  </span> 
-                  <span class="text">Tickets</span>
+            <li class="nav-item nav-item-has-children">
+                <a href="#0" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.74999 18.3333C12.2376 18.3333 15.1364 15.8128 15.7244 12.4941C15.8448 11.8143 15.2737 11.25 14.5833 11.25H9.99999C9.30966 11.25 8.74999 10.6903 8.74999 10V5.41666C8.74999 4.7263 8.18563 4.15512 7.50586 4.27556C4.18711 4.86357 1.66666 7.76243 1.66666 11.25C1.66666 15.162 4.83797 18.3333 8.74999 18.3333Z">
+                            </path>
+                            <path
+                                d="M17.0833 10C17.7737 10 18.3432 9.43708 18.2408 8.75433C17.7005 5.14918 14.8508 2.29947 11.2457 1.75912C10.5629 1.6568 10 2.2263 10 2.91665V9.16666C10 9.62691 10.3731 10 10.8333 10H17.0833Z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span class="text">Dashboard</span>
                 </a>
-
-                <ul id="tickets_menu" class="collapse dropdown-nav">
-                  <li>
-                    <a href="{{ route('tickets.create') }}">Create</a>
-
-                  </li>
-                  <li>
-                    <a href="{{ route('tickets.index') }}">View Tickets</a>
-
-                  </li>
+                <ul id="ddmenu_1" class="collapse show dropdown-nav">
+                    <li>
+                        <a href="{{ route('home') }}" class="active"> Home </a>
+                    </li>
                 </ul>
-              </li>
+            </li>
 
-          @endif
-
-          @if (auth()->user()->role->role =='agent')
+            @if (auth()->user()->role->role == 'user' || auth()->user()->role->role == 'admin')
                 <li class="nav-item nav-item-has-children">
-                <a href="#0"
-                  class="collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#agent_ticket_menu"
-                  aria-controls="agent_ticket_menu"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#tickets_menu"
+                        aria-controls="tickets_menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon">
 
-                  <span class="icon">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M11.8097 1.66667..."></path>
-                    </svg>
-                  </span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M11.8097 1.66667..."></path>
+                            </svg>
+                        </span>
+                        <span class="text">Tickets</span>
+                    </a>
 
-                  <span class="text">Tickets</span>
-                </a>
+                    <ul id="tickets_menu" class="collapse dropdown-nav">
+                        <li>
+                            <a href="{{ route('tickets.create') }}">Create</a>
 
-                <ul id="agent_ticket_menu" class="collapse dropdown-nav">
-                  <li>
-                    <a href="{{ route('tickets.index') }}">View Tickets</a>
-                  </li>
-                </ul>
-              </li>
-          @endif
-          @if (auth()->user()->role->role =='admin')
+                        </li>
+                        <li>
+                            <a href="{{ route('tickets.index') }}">View Tickets</a>
 
-            <li class="nav-item nav-item-has-children">
-              <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#users_menu"
-                aria-controls="users_menu" aria-expanded="false">
-                <span class="icon">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 10C5 8.34315 6.34315 7 8 7H12C13.6569 7 15 8.34315 15 10V13H5V10Z"></path>
-                  </svg>
-                </span>
-                <span class="text">Users</span>
-              </a>
-
-              <ul id="users_menu" class="collapse dropdown-nav">
-                <li>
-                  <a href="{{ route('users.create') }}">Create</a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                  <a href="{{ route('users.index') }}">View Users</a>
+            @endif
+
+            @if (auth()->user()->role->role == 'agent')
+                <li class="nav-item nav-item-has-children">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#agent_ticket_menu"
+                        aria-controls="agent_ticket_menu" aria-expanded="false" aria-label="Toggle navigation">
+
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M11.8097 1.66667..."></path>
+                            </svg>
+                        </span>
+
+                        <span class="text">Tickets</span>
+                    </a>
+
+                    <ul id="agent_ticket_menu" class="collapse dropdown-nav">
+                        <li>
+                            <a href="{{ route('tickets.index') }}">View Tickets</a>
+                        </li>
+                    </ul>
                 </li>
-              </ul>
-            </li>
-          @endif
+            @endif
+            @if (auth()->user()->role->role == 'admin')
+                <li class="nav-item nav-item-has-children">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#users_menu"
+                        aria-controls="users_menu" aria-expanded="false">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10C5 8.34315 6.34315 7 8 7H12C13.6569 7 15 8.34315 15 10V13H5V10Z"></path>
+                            </svg>
+                        </span>
+                        <span class="text">Users</span>
+                    </a>
 
-          @if (auth()->user()->role->role =='admin')
-
-            <li class="nav-item nav-item-has-children">
-              <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#agents_menu"
-                aria-controls="agents_menu" aria-expanded="false">
-                <span class="icon">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 2C12.7614 2 15 4.23858 15 7C15 9.76142 12.7614 12 10 12C7.23858 12 5 9.76142 5 7C5 4.23858 7.23858 2 10 2Z"></path>
-                  </svg>
-                </span>
-                <span class="text">Agents</span>
-              </a>
-
-              <ul id="agents_menu" class="collapse dropdown-nav">
-                <li>
-                  <a href="{{ route('agents.create') }}">Create</a>
+                    <ul id="users_menu" class="collapse dropdown-nav">
+                        <li>
+                            <a href="{{ route('users.create') }}">Create</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('users.index') }}">View Users</a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                  <a href="{{ route('agents.index') }}">View Agents</a>
+            @endif
+
+            @if (auth()->user()->role->role == 'admin')
+                <li class="nav-item nav-item-has-children">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#agents_menu"
+                        aria-controls="agents_menu" aria-expanded="false">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M10 2C12.7614 2 15 4.23858 15 7C15 9.76142 12.7614 12 10 12C7.23858 12 5 9.76142 5 7C5 4.23858 7.23858 2 10 2Z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="text">Agents</span>
+                    </a>
+
+                    <ul id="agents_menu" class="collapse dropdown-nav">
+                        <li>
+                            <a href="{{ route('agents.create') }}">Create</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('agents.index') }}">View Agents</a>
+                        </li>
+                    </ul>
                 </li>
-              </ul>
-            </li>
-          @endif
+            @endif
 
-          @if (auth()->user()->role->role =='admin')
+            {{-- @if (auth()->user()->role->role == 'admin')
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings') }}">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M8 2H12V4H8V2Z"></path>
+                            </svg>
+                        </span>
+                        <span class="text">Settings</span>
+                    </a>
+                </li>
+            @endif --}}
 
-            <li class="nav-item">
-              <a href="#">
-                <span class="icon">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M8 2H12V4H8V2Z"></path>
-                  </svg>
-                </span>
-                <span class="text">Settings</span>
-              </a>
-            </li>
-          @endif
-
-        {{-- <li class="nav-item mt-3">
+            {{-- <li class="nav-item mt-3">
           <form method="POST" action="{{ route('logout') }}">
               @csrf
             <button type="submit" class="nav-link btn btn-link text-start w-100" style="text-decoration: none;">
@@ -154,8 +153,8 @@
 
 
 
-          
-          {{-- <li class="nav-item nav-item-has-children">
+
+            {{-- <li class="nav-item nav-item-has-children">
             <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,8 +176,8 @@
 
 
 
-          
-          {{-- <li class="nav-item">
+
+            {{-- <li class="nav-item">
             <a href="invoice.html">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -286,7 +285,7 @@
           </li>
           <span class="divider"><hr></span> --}}
 
-          {{-- <li class="nav-item">
+            {{-- <li class="nav-item">
             <a href="notification.html">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -302,7 +301,7 @@
         </ul>
       </nav>
       <div class="promo-box"> --}}
-        {{-- <div class="promo-icon">
+            {{-- <div class="promo-icon">
           <img class="mx-auto" src="./assets/images/logo/logo-icon-big.svg" alt="Logo">
         </div>
         <h3>Upgrade to PRO</h3>
@@ -311,4 +310,4 @@
           Upgrade to PRO
         </a>
       </div> --}}
-    </aside> 
+</aside>

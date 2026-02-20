@@ -123,3 +123,7 @@ Route::put('/agents/{id}', [AgentController::class, 'update'])->name('agents.upd
 Route::delete('/agents/{id}', [AgentController::class, 'destroy'])->name('agents.destroy');
 Route::get('/agents/{id}', [AgentController::class, 'show'])
     ->name('agents.show');
+
+//settings 
+Route::get('/settings', [TicketController::class, 'settings'])->name('admin.settings');
+Route::post('/settings', [TicketController::class, 'updateSettings'])->name('admin.settings.update');
