@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
     Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
 
-    Route::get('/home', [HomeController::class, 'home'])->name('home');
+    Route::get('/page', [HomeController::class, 'home'])->name('home');
 
     Route::get('/tickets/{id}', [MessageController::class, 'show'])
         ->name('tickets.show');

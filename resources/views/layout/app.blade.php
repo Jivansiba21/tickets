@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
-    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
+    <title>ticket system</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
@@ -486,7 +487,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Admin Dashboard</h2>
+                  <h2> Dashboard</h2>
                 </div>
               </div>
               <!-- end col -->
