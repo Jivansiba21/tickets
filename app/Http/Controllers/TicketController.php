@@ -49,7 +49,7 @@ class TicketController extends Controller
                 'date' => $request->date,
                 'user_id' => $request->user_id,
                 'agent_id' => $request->agent_id,
-                'status'=>'open'
+                'status' => 'open'
             ]);
         } else {
 
@@ -160,8 +160,8 @@ class TicketController extends Controller
     {
 
         $request->validate([
-        'status' => 'required|in:open,processing,close'
-      ]);
+            'status' => 'required|in:open,in_progress,closed'
+        ]);
 
         $ticket = Ticket::findOrFail($id);
 
@@ -172,11 +172,35 @@ class TicketController extends Controller
         return back();
     }
 
-    public function settings()
-{
-    return view('settings');
-}
-    
+    public function dashboard()
+    {
+        $user = Auth::user();
 
+        if ($user->role->role == 'admin') {
 
+            $myTickets = Ticket::count();
+            $ongoing = Ticket::where('status', 'in_progress')->count();
+            $closed = Ticket::where('status', 'closed')->count();
+        } elseif ($user->role->role == 'agent') {
+
+            $myTickets = Ticket::where('agent_id', $user->id)->count();
+            $ongoing = Ticket::where('agent_id', $user->id)
+                ->where('status', 'in_progress')
+                ->count();
+            $closed = Ticket::where('agent_id', $user->id)
+                ->where('status', 'closed')
+                ->count();
+        } else { // user
+
+            $myTickets = Ticket::where('user_id', $user->id)->count();
+            $ongoing = Ticket::where('user_id', $user->id)
+                ->where('status', 'in_progress')
+                ->count();
+            $closed = Ticket::where('user_id', $user->id)
+                ->where('status', 'closed')
+                ->count();
+        }
+
+        return view('dashboard', compact('myTickets', 'ongoing', 'closed'));
+    }
 }
