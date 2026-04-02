@@ -72,7 +72,7 @@
 
                                 @if (Auth::user() && Auth::user()->role->role == 'admin')
                                     <td>{{ $ticket->user->name }}</td>
-                                    <td>{{ $ticket->agent->name }}</td>
+                                    <td>{{ $ticket->agent?->name }}</td>
                                 @endif
 
                                 <td>

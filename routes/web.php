@@ -52,26 +52,26 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-    Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
-    Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
-    Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
+    Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create'); // show form
+    Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store'); // save ticeket
+    Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index'); // show all tickets
 
-    Route::get('/page', [HomeController::class, 'home'])->name('home');
+    Route::get('/page', [HomeController::class, 'home'])->name('home'); // dashboard page
 
     Route::get('/tickets/{id}', [MessageController::class, 'show'])
-        ->name('tickets.show');
+        ->name('tickets.show'); // show ticket messages
 
     Route::post('/tickets/{id}/reply', [MessageController::class, 'reply'])
-        ->name('tickets.reply');
+        ->name('tickets.reply'); // send message
 
     Route::get('/tickets/{id}/messages', [TicketController::class, 'fetchMessages'])
-        ->name('tickets.messages');
+        ->name('tickets.messages'); //fetch messages(AJAX)
 
 
 //Route::get('/tickets/{id}/message', [MessageController::class, 'show'])->name('tickets.message');
 
-Route::get('/tickets/{id}/chat', [MessageController::class, 'show'])
-    ->name('tickets.chat');
+    Route::get('/tickets/{id}/chat', [MessageController::class, 'show'])
+    ->name('tickets.chat'); // open chat page
 
     //edit ticket details
     Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])

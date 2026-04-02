@@ -9,7 +9,10 @@
         <div class="col-md-4">
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body">
-                    <h5>My Tickets</h5>
+                    <h5 class="mb-0">
+  <i class="bi bi-ticket-perforated me-2"></i>
+  All Tickets
+</h5>
                     <h2>{{ $myTicketsCount }}</h2>
                 </div>
             </div>
@@ -19,7 +22,10 @@
         <div class="col-md-4">
             <div class="card text-white bg-warning mb-3">
                 <div class="card-body">
-                    <h5>Ongoing Tickets</h5>
+                    <h5 class="mb-0">
+  <i class="bi bi-ticket-perforated me-2"></i>
+  Ongoing Tickets
+</h5>
                     <h2>{{ $ongoingCount }}</h2>
                 </div>
             </div>
@@ -29,7 +35,10 @@
         <div class="col-md-4">
             <div class="card text-white bg-success mb-3">
                 <div class="card-body">
-                    <h5>Closed Tickets</h5>
+                   <h5 class="mb-0">
+  <i class="bi bi-ticket-perforated me-2"></i>
+  Closed Tickets
+</h5>
                     <h2>{{ $closedCount }}</h2>
                 </div>
             </div>

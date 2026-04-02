@@ -17,7 +17,8 @@ class MessageController extends Controller
         // dd(Ticket::find($id));
         $ticket = Ticket::with('messages.user')
             ->where('id', $id)
-            ->orWhereHas('messages', function ($query) {
+            ->orWhereHas('messages', function ($query)use($id) {
+                $query->where('ticket_id',$id);
                 $query->whereNotNull('read_at');
             })
             ->first();   // ✅ returns SINGLE model
